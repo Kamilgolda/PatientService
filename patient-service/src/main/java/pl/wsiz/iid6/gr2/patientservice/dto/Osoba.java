@@ -1,28 +1,13 @@
 package pl.wsiz.iid6.gr2.patientservice.dto;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.InputMismatchException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+public class Osoba{
 
-public class Osoba {
-
-    public static void main(String[] args) {
-    Osoba os = new Osoba();
-    os.setImie("kamil");
-    os.setNrTelefonu("123456789");
-    os.pesel="98032709297";
-    os.setDataUrodzenia(LocalDate.of(1998,3,27));
-    os.plec=Plec.Mężczyzna;
-    System.out.println(os.checkPesel());
-    os.mail="kamil.goldaat@gmail.com";
-        System.out.println(os.checkEmail());
-        System.out.println(os.getWiek());
-        System.out.println(os.getImie());
-    }
     private String imie;
     private String nazwisko;
     private String miejscowosc;
@@ -34,7 +19,7 @@ public class Osoba {
     private String nrTelefonu;
     private Plec plec;
 
-    public boolean checkEmail(){
+    public boolean checkEmail(String mail){
         String regex = "^(.+)@(.+)$";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(mail);
@@ -89,15 +74,17 @@ public class Osoba {
     }
 
     public void setMail(String mail) {
-        this.mail = mail;
+        if (checkEmail(mail))   this.mail = mail;
+        else throw new InputMismatchException("Nieprawidłowy adres email");
     }
 
     public String getNrTelefonu() {
         return nrTelefonu;
     }
 
-    public void setNrTelefonu(@NotNull String nrTelefonu) {
-        if (nrTelefonu.length() < 12) this.nrTelefonu = nrTelefonu;
+    public void setNrTelefonu(String nrTelefonu) {
+        if (nrTelefonu.length() <= 12 && nrTelefonu.length() >=9 ) this.nrTelefonu = nrTelefonu;
+        else throw new InputMismatchException("Nieprawidłowy numer telefonu");
     }
 
     public int getWiek(){
@@ -133,7 +120,8 @@ public class Osoba {
     }
 
     public void setKod(String kod) {
-        this.kod = kod;
+        if (kod.length() == 6 && kod.charAt(2) == '-')this.kod = kod;
+        else throw new InputMismatchException("Nieprawidłowy kod pocztowy!");
     }
 
     public String getUlica() {
@@ -148,8 +136,10 @@ public class Osoba {
         return pesel;
     }
 
-    public void setPesel(String pesel) {
-        this.pesel = pesel;
+    public void setPesel(String pesel)
+    {
+      if (pesel.length() == 11) this.pesel = pesel;
+      else throw new InputMismatchException("Nieprawidłowy pesel");
     }
 
     public LocalDate getDataUrodzenia() {
@@ -158,6 +148,21 @@ public class Osoba {
 
     public void setDataUrodzenia(LocalDate dataUrodzenia) {
         if (dataUrodzenia.compareTo(LocalDate.now()) < 0)
-        this.dataUrodzenia = dataUrodzenia;
+            this.dataUrodzenia = dataUrodzenia;
+        else throw new InputMismatchException("Nieprawidłowa data urodzenia");
+    }
+
+    public Osoba(String imie, String nazwisko, String miejscowosc, String kod, String ulica, String pesel, LocalDate dataUrodzenia, String mail, String nrTelefonu, Plec plec) {
+        setImie(imie);
+        setNazwisko(nazwisko);
+        setMiejscowosc(miejscowosc);
+        setKod(kod);
+        setUlica(ulica);
+        setPesel(pesel);
+        setDataUrodzenia(dataUrodzenia);
+        setMail(mail);
+        setNrTelefonu(nrTelefonu);
+        setPlec(plec);
+        if (!checkPesel()) throw new InputMismatchException("Wprowadzone dane się nie zgadzają");
     }
 }
