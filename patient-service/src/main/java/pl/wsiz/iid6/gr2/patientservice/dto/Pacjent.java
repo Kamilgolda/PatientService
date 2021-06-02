@@ -118,6 +118,11 @@ public class Pacjent extends Osoba {
         super(imie, nazwisko, pesel);
     }
 
+    public Pacjent(String imie, String nazwisko, String pesel, Integer nrUbezpieczenia) {
+        super(imie, nazwisko, pesel);
+        this.nrUbezpieczenia =nrUbezpieczenia;
+    }
+
     @Override
     public String toString() {
         return "Pacjent{" +

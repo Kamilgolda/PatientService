@@ -40,4 +40,10 @@ public class PatientController {
     public String patientId(@RequestParam Long idP){
         return (patientService.findbyId(idP)).toString();
     }
+
+    @GetMapping(path ="/lnames")
+    @ResponseBody
+    public String patientLastName(@RequestParam String lname){
+        return patientService.findByLastName(lname);
+    }
 }

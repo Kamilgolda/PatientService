@@ -6,6 +6,7 @@ import pl.wsiz.iid6.gr2.patientservice.dto.Pacjent;
 import pl.wsiz.iid6.gr2.patientservice.entity.PatientEntity;
 import pl.wsiz.iid6.gr2.patientservice.jpa.PatientRepository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -17,8 +18,13 @@ public class PatientService {
         Optional<PatientEntity> res = patientRepository.findById(id);
         if (res.isPresent()) {
             PatientEntity pat = res.get();
-            return new Pacjent(pat.getFirstName(), pat.getLastName(), pat.getPesel());
+            return new Pacjent(pat.getFirstName(), pat.getLastName(), pat.getPesel(), pat.getNrUbezpieczenia());
         }
         return new Pacjent("None", "None","043120016839");
+    }
+
+    public String findByLastName(String name){
+        List<PatientEntity> rs = patientRepository.findAllByLastName(name);
+        return rs.toString();
     }
 }

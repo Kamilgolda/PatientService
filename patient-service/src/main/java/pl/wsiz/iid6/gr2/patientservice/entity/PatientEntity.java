@@ -13,6 +13,7 @@ public class PatientEntity {
     private String firstName;
     private String lastName;
     private String pesel;
+    private Integer nrUbezpieczenia;
 
     protected PatientEntity() {
     }
@@ -21,6 +22,12 @@ public class PatientEntity {
         this.firstName = firstName;
         this.lastName = lastName;
         this.pesel = pesel;
+    }
+    public PatientEntity(String firstName, String lastName, String pesel, Integer nrUbezpieczenia) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.pesel = pesel;
+        this.nrUbezpieczenia =nrUbezpieczenia;
     }
 
     public Long getId() {
@@ -35,6 +42,11 @@ public class PatientEntity {
     public String getPesel() {
         return pesel;
     }
+
+    public Integer getNrUbezpieczenia() {
+        return nrUbezpieczenia;
+    }
+
     @Override
     public String toString() {
         return String.format(
