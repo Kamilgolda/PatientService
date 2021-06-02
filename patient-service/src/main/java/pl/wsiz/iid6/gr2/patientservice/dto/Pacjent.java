@@ -114,4 +114,23 @@ public class Pacjent extends Osoba {
         this.recepty = recepty;
         this.szczepiony = szczepiony;
     }
+    public Pacjent(String imie, String nazwisko, String pesel) {
+        super(imie, nazwisko, pesel);
+    }
+
+    @Override
+    public String toString() {
+        return "Pacjent{" +
+                "imie=" + getImie() +
+                ", nazwisko="+ getNazwisko() +
+                ", pesel=" +getPesel()+
+                ", nrUbezpieczenia=" + nrUbezpieczenia +
+                ", lekarzRodzinny=" + lekarzRodzinny +
+                ", listaSkierowan=" + listaSkierowan +
+                ", historiaBadan=" + historiaBadan +
+                ", leki=" + leki +
+                ", recepty=" + recepty +
+                ", szczepiony=" + szczepiony +
+                '}';
+    }
 }

@@ -165,4 +165,11 @@ public class Osoba{
         setPlec(plec);
         if (!checkPesel()) throw new InputMismatchException("Wprowadzone dane się nie zgadzają");
     }
+
+    public Osoba(String imie, String nazwisko, String pesel) {
+        this.imie = imie;
+        this.nazwisko = nazwisko;
+        this.pesel = pesel;
+    }
+
 }
