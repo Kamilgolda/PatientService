@@ -1,5 +1,7 @@
 package pl.wsiz.iid6.gr2.patientservice.dto;
 
+import net.bytebuddy.implementation.bytecode.Throw;
+
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.InputMismatchException;
@@ -65,8 +67,10 @@ public class Osoba{
         return plec;
     }
 
-    public void setPlec(Plec plec) {
-        this.plec = plec;
+    public void setPlec(char plec) {
+        if (plec == 'M') this.plec = Plec.Mężczyzna;
+        else if(plec == 'K') this.plec = Plec.Kobieta;
+        else throw new InputMismatchException("Nieprawidłowa plec");
     }
 
     public String getMail() {
@@ -129,6 +133,8 @@ public class Osoba{
     }
 
     public void setUlica(String ulica) {
+        if(ulica==null) this.ulica="-";
+        else
         this.ulica = ulica.substring(0, 1).toUpperCase() + ulica.substring(1);;
     }
 
@@ -152,7 +158,7 @@ public class Osoba{
         else throw new InputMismatchException("Nieprawidłowa data urodzenia");
     }
 
-    public Osoba(String imie, String nazwisko, String miejscowosc, String kod, String ulica, String pesel, LocalDate dataUrodzenia, String mail, String nrTelefonu, Plec plec) {
+    public Osoba(String imie, String nazwisko, String miejscowosc, String kod, String ulica, String pesel, LocalDate dataUrodzenia, String mail, String nrTelefonu, char plec) {
         setImie(imie);
         setNazwisko(nazwisko);
         setMiejscowosc(miejscowosc);
@@ -166,10 +172,6 @@ public class Osoba{
         if (!checkPesel()) throw new InputMismatchException("Wprowadzone dane się nie zgadzają");
     }
 
-    public Osoba(String imie, String nazwisko, String pesel) {
-        this.imie = imie;
-        this.nazwisko = nazwisko;
-        this.pesel = pesel;
+    public Osoba() {
     }
-
 }

@@ -44,6 +44,6 @@ public class PatientController {
     @GetMapping(path ="/lnames")
     @ResponseBody
     public String patientLastName(@RequestParam String lname){
-        return patientService.findByLastName(lname);
+        return patientService.findByNazwisko(lname);
     }
 }

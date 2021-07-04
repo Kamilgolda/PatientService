@@ -2,6 +2,7 @@ package pl.wsiz.iid6.gr2.patientservice.dto;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
 
 public class Pacjent extends Osoba {
@@ -80,47 +81,31 @@ public class Pacjent extends Osoba {
         return szczepiony;
     }
 
-    public void setSzczepiony(Szczepionka szczepiony) {
-        this.szczepiony = szczepiony;
+    public void setSzczepiony(char szczepiony) {
+
+        if(szczepiony == 'P') this.szczepiony=Szczepionka.Pfizer;
+        else if(szczepiony == 'M') this.szczepiony=Szczepionka.Moderna;
+        else if(szczepiony == 'A') this.szczepiony=Szczepionka.AstraZeneca;
+        else if(szczepiony == 'J') this.szczepiony=Szczepionka.Janssen;
+        else if(szczepiony == 'B') this.szczepiony=Szczepionka.Brak;
+        else throw new InputMismatchException("Blad szczepiony");
     }
 
     public Pacjent(String imie, String nazwisko, String miejscowosc, String kod,
                    String ulica, String pesel, LocalDate dataUrodzenia, String mail,
-                   String nrTelefonu, Plec plec, int nrUbezpieczenia, Osoba lekarzRodzinny,
-                   Szczepionka szczepiony)
+                   String nrTelefonu, char plec, int nrUbezpieczenia, char szczepiony)
     {
         super(imie, nazwisko, miejscowosc, kod, ulica, pesel, dataUrodzenia, mail, nrTelefonu, plec);
         this.nrUbezpieczenia = nrUbezpieczenia;
-        this.lekarzRodzinny = lekarzRodzinny;
-        this.szczepiony = szczepiony;
+        this.setSzczepiony(szczepiony);
         this.recepty = new ArrayList<>();
         this.leki = new ArrayList<>();
         this.historiaBadan = new ArrayList<>();
         this.listaSkierowan = new ArrayList<>();
-
     }
 
-    public Pacjent(String imie, String nazwisko, String miejscowosc, String kod, String ulica,
-                   String pesel, LocalDate dataUrodzenia, String mail, String nrTelefonu, Plec plec,
-                   int nrUbezpieczenia, Osoba lekarzRodzinny, List<Skierowanie> listaSkierowan,
-                   List<Badanie> historiaBadan, List<Lek> leki, List<Recepta> recepty, Szczepionka szczepiony)
-    {
-        super(imie, nazwisko, miejscowosc, kod, ulica, pesel, dataUrodzenia, mail, nrTelefonu, plec);
-        this.nrUbezpieczenia = nrUbezpieczenia;
-        this.lekarzRodzinny = lekarzRodzinny;
-        this.listaSkierowan = listaSkierowan;
-        this.historiaBadan = historiaBadan;
-        this.leki = leki;
-        this.recepty = recepty;
-        this.szczepiony = szczepiony;
-    }
-    public Pacjent(String imie, String nazwisko, String pesel) {
-        super(imie, nazwisko, pesel);
-    }
-
-    public Pacjent(String imie, String nazwisko, String pesel, Integer nrUbezpieczenia) {
-        super(imie, nazwisko, pesel);
-        this.nrUbezpieczenia =nrUbezpieczenia;
+    public Pacjent() {
+        super();
     }
 
     @Override
