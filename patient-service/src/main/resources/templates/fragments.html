@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<html lang="pl" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head th:fragment="html_head (pageTitle)">
   <meta charset="UTF-8">
   <title th:text="${pageTitle}">PatientService</title>
@@ -43,9 +44,13 @@
         <input type="search" class="form-control" placeholder="Szukaj..." aria-label="Search">
       </form>
 
-      <div class="dropdown text-end">
+      <div sec:authorize="isAnonymous()">
+        <a class="btn btn-success" th:href="@{/login}">Zaloguj się</a>
+        <a class="btn btn-primary" th:href="@{/register}">Zarejestruj się</a>
+      </div>
+
+      <div class="dropdown text-end" sec:authorize="isAuthenticated()">
         <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-          <!--          <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">-->
           <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person-fill rounded-circle" viewBox="0 0 16 16">
             <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
           </svg>
@@ -53,13 +58,21 @@
         <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
           <li><a class="dropdown-item" href="#">Moje recepty</a></li>
           <li><a class="dropdown-item" href="#">Moi lekarze</a></li>
-          <li><a class="dropdown-item" href="#">Profile</a></li>
+          <li><a class="dropdown-item" th:href="@{/patient}">Moje dane</a></li>
           <li><hr class="dropdown-divider"></li>
-          <li><a class="dropdown-item" href="#">Wyloguj</a></li>
+          <li><a class="dropdown-item" th:href="@{/logout}">Wyloguj</a></li>
         </ul>
       </div>
     </div>
   </div>
 </header>
 
+<div th:fragment="scripts">
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</div>
 </html>

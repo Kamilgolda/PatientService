@@ -1,23 +1,16 @@
 package pl.wsiz.iid6.gr2.patientservice.entity;
-
-import com.fasterxml.jackson.databind.JsonSerializer;
-import pl.wsiz.iid6.gr2.patientservice.dto.*;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import java.sql.Date;
-import java.time.Instant;
 import java.time.LocalDate;
-import java.time.ZoneId;
-import java.util.List;
 
 @Entity(name = "patient")
 public class PatientEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    private int userid;
     private String imie;
     private String nazwisko;
     private String pesel;
@@ -32,7 +25,7 @@ public class PatientEntity {
     private Long idlekarzrodzinny;
     private char szczepiony;
 
-    protected PatientEntity() {
+    public PatientEntity() {
     }
 
     public LocalDate getDataurodzenia() {
@@ -75,7 +68,8 @@ public class PatientEntity {
         this.szczepiony = szczepiony;
     }
 
-    public PatientEntity(String imie, String nazwisko, String pesel, String miejscowosc, String kod, String ulica, LocalDate dataUrodzenia, String mail, String nrTelefonu, char plec) {
+    public PatientEntity(int userid, String imie, String nazwisko, String pesel, String miejscowosc, String kod, String ulica, LocalDate dataUrodzenia, String mail, String nrTelefonu, char plec) {
+        this.userid = userid;
         this.imie = imie;
         this.nazwisko = nazwisko;
         this.pesel = pesel;
@@ -95,6 +89,14 @@ public class PatientEntity {
         this.id = id;
     }
 
+    public int getUserId() {
+        return userid;
+    }
+
+    public void setUserId(int userId) {
+        this.userid = userId;
+    }
+
     public void setImie(String imie) {
         this.imie = imie;
     }
@@ -107,9 +109,9 @@ public class PatientEntity {
         this.pesel = pesel;
     }
 
-//    public void setNrUbezpieczenia(Integer nrUbezpieczenia) {
-//        this.nrUbezpieczenia = nrUbezpieczenia;
-//    }
+    public void setNrUbezpieczenia(Integer nrUbezpieczenia) {
+        this.nrubezpieczenia = nrUbezpieczenia;
+    }
 
     public String getMiejscowosc() {
         return miejscowosc;
@@ -180,9 +182,9 @@ public class PatientEntity {
         return pesel;
     }
 
-//    public Integer getNrUbezpieczenia() {
-//        return nrUbezpieczenia;
-//    }
+    public Integer getNrUbezpieczenia() {
+        return nrubezpieczenia;
+    }
 
     @Override
     public String toString() {

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head th:replace="fragments :: html_head (pageTitle='Strona Główna')"/>
+<body>
+
+<header th:replace="fragments :: header"></header>
+
+<div class="row justify-content-center">
+    <div class="col-6 mg-top50">
+        <h1>Mój profil</h1>
+        <h2 th:text="${warning}"></h2>
+        <div class="row">
+        <h3 class="col-3">Płeć:</h3>
+            <h3 th:text="${plec}" class="col-3"></h3>
+        </div>
+
+        <div class="row">
+        <h3 class="col-3">Imię: </h3>
+            <h3 th:text="${imie}" class="col-3"></h3>
+        </div>
+
+        <div class="row">
+        <h3 class="col-3">Nazwisko: </h3>
+            <h3 th:text="${nazwisko}" class="col-3"></h3>
+
+        </div>
+
+        <div class="row">
+        <h3 class="col-3">Miejscowość: </h3>
+            <h3 th:text="${miejscowosc}" class="col-3"></h3>
+
+        </div>
+
+        <div class="row">
+        <h3 class="col-3">Kod pocztowy: </h3>
+            <h3 th:text="${kod}" class="col-3"></h3>
+
+        </div>
+
+        <div class="row">
+        <h3 class="col-3">Ulica: </h3>
+            <h3 th:text="${ulica}" class="col-3"></h3>
+        </div>
+
+        <div class="row">
+        <h3 class="col-3">Pesel: </h3>
+            <h3 th:text="${pesel}" class="col-3"></h3>
+
+        </div>
+
+        <div class="row">
+        <h3 class="col-3">Data urodzenia: </h3>
+            <h3 th:text="${dataurodzenia}" class="col-3"></h3>
+
+        </div>
+
+        <div class="row">
+        <h3 class="col-3">Email: </h3>
+            <h3 th:text="${mail}" class="col-3"></h3>
+
+        </div>
+
+        <div class="row">
+        <h3 class="col-3">Numer telefonu: </h3>
+            <h3 th:text="${nrtel}" class="col-3"></h3>
+
+        </div>
+
+        <div class="row">
+        <h3 class="col-3">Numer ubezpieczenia: </h3>
+            <h3 th:text="${nrubezpieczenia}" class="col-3"></h3>
+        </div>
+    </div>
+</div>
+
+<footer th:replace="fragments :: footer"></footer>
+<div th:replace="fragments :: scripts"></div>
+</body>
+</html>

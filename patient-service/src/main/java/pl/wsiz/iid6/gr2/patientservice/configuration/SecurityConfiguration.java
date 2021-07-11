@@ -27,8 +27,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/").permitAll()
                 .antMatchers("/home").permitAll()
+                .antMatchers("/registration").permitAll()
                 .antMatchers("/patient/lnames**").hasRole("ADMIN")
-                .and().formLogin();
+                .and()
+                .formLogin()
+                .and()
+                .logout()
+                .logoutSuccessUrl("/");
 
         //LOGIN: admin | HASLO: zaq1@WSX
     }

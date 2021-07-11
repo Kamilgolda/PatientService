@@ -30,6 +30,19 @@ public class PatientService {
         return new Pacjent();
     }
 
+    public Pacjent findByPesel(String pesel){
+        Optional<PatientEntity> res = patientRepository.findByPesel(pesel);
+        if (res.isPresent()) {
+            PatientEntity patient = res.get();
+            return new Pacjent(patient.getImie(), patient.getNazwisko(), patient.getMiejscowosc(), patient.getKod(),
+                        patient.getUlica(), patient.getPesel(), patient.getDataUrodzenia(), patient.getMail(),
+                        patient.getNrTelefonu(), patient.getPlec(), patient.getNrUbezpieczenia(), patient.getSzczepiony());
+        }
+        return new Pacjent();
+    }
+
+
+
     public String findByNazwisko(String nazwisko){
         List<PatientEntity> rs = patientRepository.findAllByNazwisko(nazwisko);
 
