@@ -44,7 +44,6 @@ public class PatientService {
 
 
     public String findByNazwisko(String nazwisko){
-        List<PatientEntity> rs = patientRepository.findAllByNazwisko(nazwisko);
 
         List<Pacjent> Patients = new ArrayList<>();
         try {
