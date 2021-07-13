@@ -2,9 +2,11 @@ package pl.wsiz.iid6.gr2.patientservice.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pl.wsiz.iid6.gr2.patientservice.dto.Lek;
-import pl.wsiz.iid6.gr2.patientservice.dto.Pacjent;
+import pl.wsiz.iid6.gr2.patientservice.dto.*;
+import pl.wsiz.iid6.gr2.patientservice.entity.KonsultacjaEntity;
 import pl.wsiz.iid6.gr2.patientservice.entity.PatientEntity;
+import pl.wsiz.iid6.gr2.patientservice.entity.User;
+import pl.wsiz.iid6.gr2.patientservice.jpa.KonsultacjaRepository;
 import pl.wsiz.iid6.gr2.patientservice.jpa.PatientRepository;
 
 import java.util.ArrayList;
@@ -16,6 +18,9 @@ import java.util.Optional;
 public class PatientService {
     @Autowired
     private PatientRepository patientRepository;
+
+    @Autowired
+    private KonsultacjaRepository konsultacjaRepository;
 
     public Pacjent findbyId(Long id) {
         Optional<PatientEntity> res = patientRepository.findById(id);
@@ -61,5 +66,18 @@ public class PatientService {
         }
         if(Patients.size()<1) return "Wystąpił błąd lub podano nieprawidłowy argument";
         return Patients.toString();
+    }
+
+    public KonsultacjaEntity registerNewConsultation(String patientpesel, Long lekarz_id){
+        KonsultacjaEntity consultation = new KonsultacjaEntity();
+        consultation.setPatientpesel(patientpesel);
+        consultation.setLekarzid(lekarz_id);
+        consultation.setOpis("");
+        consultation.setTypbadania("");
+        consultation.setStatus(Status.OCZEKUJACA);
+
+        KonsultacjaEntity newConsultation = konsultacjaRepository.save(consultation);
+
+        return newConsultation;
     }
 }

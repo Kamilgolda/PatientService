@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head th:replace="fragments :: html_head (pageTitle='Strona Główna')"/>
+<body>
+
+<header th:replace="fragments :: header"></header>
+
+<div class="row justify-content-center" style="height:100vh; margin-right:0px;">
+    <div class="col-5 mg-top50">
+        <table>
+            <tr data-th-each="x : ${doctors}">
+                <td data-th-text="${x.imie}">...</td>
+                <td data-th-text="${x.nazwisko}">...</td>
+                <td><a th:href="@{/patient/konsultacja/{id}(id=${x.pesel})}">Umów wizytę</a></td>
+                <br>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<footer th:replace="fragments :: footer"></footer>
+<div th:replace="fragments :: scripts"></div>
+</body>
+</html>

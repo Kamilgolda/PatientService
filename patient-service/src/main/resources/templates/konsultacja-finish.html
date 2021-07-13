@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head th:replace="fragments :: html_head (pageTitle='Strona Główna')"/>
+<body>
+
+<header th:replace="fragments :: header"></header>
+
+<div class="row justify-content-center" style="height:100vh; margin-right:0px;">
+    <div class="col-5 mg-top50">
+        <h1>Dziękujemy za zarezerwowanie konsultacji</h1>
+        <h2>Na Państwa adres e-mail została wysłana wiadomość z informacją o planowanej wizycie.</h2>
+    </div>
+</div>
+
+<footer th:replace="fragments :: footer"></footer>
+<div th:replace="fragments :: scripts"></div>
+</body>
+</html>

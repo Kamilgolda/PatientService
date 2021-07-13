@@ -9,7 +9,6 @@ public class Pacjent extends Osoba {
 
     private int nrUbezpieczenia;
     private Osoba lekarzRodzinny;
-    private List<Badanie> historiaBadan;
     private List<Lek> leki;
     private List<Recepta> recepty;
     private Szczepionka szczepiony;
@@ -28,18 +27,6 @@ public class Pacjent extends Osoba {
 
     public void setLekarzRodzinny(Osoba lekarzRodzinny) {
         this.lekarzRodzinny = lekarzRodzinny;
-    }
-
-    public List<Badanie> getHistoriaBadan() {
-        return historiaBadan;
-    }
-
-    public void AddToHistoriaBadan(Badanie badanie) {
-        this.historiaBadan.add(badanie);
-    }
-
-    public void setHistoriaBadan(List<Badanie> historiaBadan) {
-        this.historiaBadan = historiaBadan;
     }
 
     public List<Lek> getLeki() {
@@ -87,7 +74,6 @@ public class Pacjent extends Osoba {
         this.setSzczepiony(szczepiony);
         this.recepty = new ArrayList<>();
         this.leki = new ArrayList<>();
-        this.historiaBadan = new ArrayList<>();
     }
 
     public Pacjent() {
@@ -102,7 +88,6 @@ public class Pacjent extends Osoba {
                 ", pesel=" +getPesel()+
                 ", nrUbezpieczenia=" + nrUbezpieczenia +
                 ", lekarzRodzinny=" + lekarzRodzinny +
-                ", historiaBadan=" + historiaBadan +
                 ", leki=" + leki +
                 ", recepty=" + recepty +
                 ", szczepiony=" + szczepiony +

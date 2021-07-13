@@ -61,7 +61,7 @@ public class PSUserDetailsService implements UserDetailsService {
             Optional<PatientEntity> lekarz = patientRepository.findByPesel(x.getUserName());
             if (lekarz.isPresent()) {
                 PatientEntity l = lekarz.get();
-                lista.add(new Osoba(l.getImie(), l.getNazwisko(), l.getMail(), l.getNrTelefonu()));
+                lista.add(new Osoba(l.getImie(), l.getNazwisko(), l.getMail(), l.getNrTelefonu(), l.getId().toString()));
             }
         }
         return lista;

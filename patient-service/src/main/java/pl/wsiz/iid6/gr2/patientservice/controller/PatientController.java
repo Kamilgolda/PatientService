@@ -1,25 +1,30 @@
 package pl.wsiz.iid6.gr2.patientservice.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+import pl.wsiz.iid6.gr2.patientservice.dto.Osoba;
 import pl.wsiz.iid6.gr2.patientservice.dto.Pacjent;
+import pl.wsiz.iid6.gr2.patientservice.entity.User;
+import pl.wsiz.iid6.gr2.patientservice.service.PSUserDetailsService;
 import pl.wsiz.iid6.gr2.patientservice.service.PatientService;
 
 import java.security.Principal;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.InputMismatchException;
+import java.util.List;
 
 @Controller
 @RequestMapping(value = "/patient")
 public class PatientController {
     @Autowired
     private PatientService patientService;
+
+    @Autowired
+    private PSUserDetailsService userService;
 
     @GetMapping(path="")
     public String userdata(final ModelMap model, Principal principal) throws Exception {
@@ -56,6 +61,21 @@ public class PatientController {
             model.addAttribute("nrubezpieczenia", "");
         }
         return "profile";
+    }
+
+    @GetMapping(path="/konsultacja")
+    public String konsultacja(final ModelMap model) throws Exception {
+
+        List<Osoba> lekarze = userService.findAllDoctors();
+        model.addAttribute("doctors", lekarze);
+        return "konsultacja";
+    }
+
+    @GetMapping(value = "/konsultacja/{idP}")
+    public String konsultacja_finish(final ModelMap model, @PathVariable Long idP, Principal principal) throws Exception {
+        String pesel = principal.getName();
+        patientService.registerNewConsultation(pesel, idP);
+        return "konsultacja-finish";
     }
 
     @GetMapping(path ="/id")
