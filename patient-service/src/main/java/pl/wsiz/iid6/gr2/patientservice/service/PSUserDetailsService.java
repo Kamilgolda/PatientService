@@ -50,6 +50,20 @@ public class PSUserDetailsService implements UserDetailsService {
         patientRepository.save(newPatient);
         return newUser;
     }
+    public User registerNewLekarzAccount(UserDto userDto){
+        User user = new User();
+        user.setUserName(userDto.getPesel());
+        user.setPassword(userDto.getPassword());
+        user.setActive(true);
+        user.setRoles("ROLE_LEKARZ");
+
+        User newUser = userRepository.save(user);
+
+        PatientEntity newPatient = new PatientEntity(newUser.getId(), userDto.getFirstName(), userDto.getLastName(), newUser.getUserName(), userDto.getMiejscowosc(), userDto.getKod(), userDto.getUlica(), userDto.getDataurodzenia().toLocalDate(), userDto.getEmail(), userDto.getNrtelefonu(), userDto.getPlec());
+
+        patientRepository.save(newPatient);
+        return newUser;
+    }
 
 //    private boolean emailExist(String email) {
 //        return userRepository.findByEmail(email) != null;
