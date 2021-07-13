@@ -14,7 +14,7 @@
 
 <footer th:fragment="footer" class="border-top footer text-muted">
   <div class="container">
-    &copy; 2021 - PatientService - <a href="#">Privacy</a>
+    &copy; 2021 - PatientService - <a th:href="@{/contact}">Kontakt</a>
   </div>
 </footer>
 
@@ -26,18 +26,20 @@
       </a>
 
       <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-        <li><a th:href="@{/patient/pa}" class="nav-link px-2 link-secondary">Strona Główna</a></li>
-        <li><a href="#" class="nav-link px-2 link-dark">Strona 1</a></li>
-        <li><a href="#" class="nav-link px-2 link-dark">Strona 2</a></li>
-        <li><a href="#" class="nav-link px-2 link-dark">Strona 3</a></li>
+        <li><a th:href="@{/}" class="nav-link px-2 link-secondary">Strona Główna</a></li>
+        <li sec:authorize="isAuthenticated()"><a th:href="@{/patient/konsultacja}" class="nav-link px-2 link-dark">Umów się na konsultację</a></li>
+        <li sec:authorize="hasRole('LEKARZ')"><a th:href="@{/lekarz/konsultacje}" class="nav-link px-2 link-dark">Rezerwowane konsultacje</a></li>
+        <li sec:authorize="hasRole('ADMIN')"><a th:href="@{/admin/dodaj}" class="nav-link px-2 link-dark">Dodaj lekarzy</a></li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="dropdown" data-bs-toggle="dropdown" aria-expanded="false">Dropdown</a>
+          <a class="nav-link dropdown-toggle" href="#" id="dropdown" data-bs-toggle="dropdown" aria-expanded="false">Nasza przychodnia</a>
           <ul class="dropdown-menu" aria-labelledby="dropdown">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
+            <li><a class="dropdown-item" th:href="@{/lakarze}">Lekarze</a></li>
+            <li><a class="dropdown-item" th:href="@{/telefony}">Spis telefonów</a></li>
+            <li><a class="dropdown-item" th:href="@{/laboratorium}">Laboratorium</a></li>
           </ul>
         </li>
+        <li><a th:href="@{/contact}" class="nav-link px-2 link-dark">Kontakt</a></li>
+
       </ul>
 
       <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
@@ -57,7 +59,7 @@
         </a>
         <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
           <li><a class="dropdown-item" href="#">Moje recepty</a></li>
-          <li><a class="dropdown-item" href="#">Moi lekarze</a></li>
+          <li><a class="dropdown-item" href="#">Moje konsultacje</a></li>
           <li><a class="dropdown-item" th:href="@{/patient}">Moje dane</a></li>
           <li><hr class="dropdown-divider"></li>
           <li><a class="dropdown-item" th:href="@{/logout}">Wyloguj</a></li>

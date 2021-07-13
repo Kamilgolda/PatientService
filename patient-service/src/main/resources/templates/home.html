@@ -6,7 +6,23 @@
 
 <header th:replace="fragments :: header"></header>
 
-<h1>Witaj</h1>
+<h1>Witaj w naszej przychodni</h1>
+<div sec:authorize="isAnonymous()">
+    <h1>Lekarze online dla Ciebie.
+        Już w 15 minut
+        Umów się na e-konsultację lekarską.
+        Bez wychodzenia z domu</h1>
+    <h1>Aby umówić się na konsultację wymagane jest zalogowanie się</h1>
+    <a class="btn btn-success" th:href="@{/login}">Zaloguj się</a>
+</div>
+
+<div sec:authorize="isAuthenticated()">
+    <h1>Lekarze online dla Ciebie.
+        Już w 15 minut
+        Umów się na e-konsultację lekarską.
+        Bez wychodzenia z domu</h1>
+    <a class="btn btn-success" th:href="@{/patient/konsultacja}">Umów wizytę</a>
+</div>
 
 <footer th:replace="fragments :: footer"></footer>
 <div th:replace="fragments :: scripts"></div>
