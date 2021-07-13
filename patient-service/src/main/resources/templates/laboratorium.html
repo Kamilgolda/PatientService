@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head th:replace="fragments :: html_head (pageTitle='Strona Główna')"/>
+<body>
+
+<header th:replace="fragments :: header"></header>
+
+<div class="row justify-content-center" style="margin-right:0px;">
+    <div class="col-7 mg-top50">
+
+        <h3>
+        Medyczne Laboratorium Diagnostyczne
+        ul. Fredry 25
+        11-111 Rzeszów
+        tel. 17 86 00 609
+        email: laboratorium@patient-service.pl
+        </h3>
+
+        <h4>
+        Kierownik Medycznego Laboratorium Medycznego
+        mgr Justyna Jurkowska - Gniewek
+        specjalista laboratoryjnej diagnostyki medycznej, analityk kliniczny, specjalista zdrowia publicznego
+        </h4>
+
+        <h4>
+        Kierownik Pracowni Serologii Grup Krwi
+        mgr Dorota Haznar - Badura
+        specjalista laboratoryjnej transfuzjologii medycznej
+        </h4>
+
+        <h4>
+        INFORMUJEMY, ŻE PUNKT POBRAŃ I REJESTRACJA ZOSTAŁY PRZENIESIONE NA II PIĘTRO W BUDYNKU “A”
+        </h4>
+        Rejestracja na badania rozpoczyna się od godziny 7.00. Przed rejestracją należy pobrać bilet.
+        <h5>
+        Pobieranie materiału odbywa się od poniedziałku do piątku w godzinach od 7.15 do 10.00 w pok. 226. Pacjenci wykonujący wymazy COVID – 19 Ag, INFLUENZA A i B Ag obsługiwani są w godz. 10.00 – 11.00 w pok. 225
+        </h5>
+        <h5>
+        Wyniki badań wydawane są do godziny 17.00. W godzinach popołudniowych proszę dzwonić dzwonkiem przy okienku rejestracji.
+        </h5>
+        <h5>
+        Realizujemy badania bezpłatnie na podstawie skierowania od lekarza rodzinnego lub lekarza specjalisty oraz odpłatnie.
+        </h5>
+
+        <h3>
+        CENNIK BADAŃ LABORATORYJNYCH
+        </h3>
+
+        <h4>
+        Laboratorium składa się z pracowni:
+        </h4>
+        <ul>
+            <li>– biochemii klinicznej</li>
+            <li>– hematologii i koagulologi</li>
+            <li>– analityki ogólnej</li>
+            <li>– immunochemii</li>
+            <li>– diagnostyki boreliozy</li>
+            <li>– serologii grup krwi</li>
+        </ul>
+
+        <h4>Wykonujemy szeroki panel badań laboratoryjnych, m. in.:</h4>
+        <ul>
+            <li>– analityki ogólnej
+            <li>– biochemii klinicznej</li>
+            <li>– hematologii</li>
+            <li>– serologii grup krwi</li>
+            <li>– immunodiagnostyki</li>
+        </ul>
+
+        <h5>
+        Zatrudniamy fachowy personel:
+        diagnostów laboratoryjnych, w tym specjalistów z zakresu:
+        1) laboratoryjnej diagnostyki medycznej
+        2) laboratoryjnej transfuzjologii medycznej
+        oraz techników analityki medycznej z dużym doświadczeniem.
+        </h5>
+    </div>
+</div>
+
+<footer th:replace="fragments :: footer"></footer>
+<div th:replace="fragments :: scripts"></div>
+</body>
+</html>

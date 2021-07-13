@@ -64,4 +64,11 @@ public class HomeController {
     public String telefony(final ModelMap model) throws Exception {
         return "spis_tel";
     }
+
+    @GetMapping(path="/laboratorium")
+    public String laboratorium(final ModelMap model) throws Exception {
+        return "laboratorium";
+    }
+
+
 }

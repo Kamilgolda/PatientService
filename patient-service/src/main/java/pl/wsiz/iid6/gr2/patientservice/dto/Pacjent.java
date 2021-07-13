@@ -9,7 +9,6 @@ public class Pacjent extends Osoba {
 
     private int nrUbezpieczenia;
     private Osoba lekarzRodzinny;
-    private List<Skierowanie> listaSkierowan;
     private List<Badanie> historiaBadan;
     private List<Lek> leki;
     private List<Recepta> recepty;
@@ -29,18 +28,6 @@ public class Pacjent extends Osoba {
 
     public void setLekarzRodzinny(Osoba lekarzRodzinny) {
         this.lekarzRodzinny = lekarzRodzinny;
-    }
-
-    public List<Skierowanie> getListaSkierowan() {
-        return listaSkierowan;
-    }
-
-    public void AddToListaSkierowan(Skierowanie skierowanie) {
-        this.listaSkierowan.add(skierowanie);
-    }
-
-    public void setListaSkierowan(List<Skierowanie> listaSkierowan) {
-        this.listaSkierowan = listaSkierowan;
     }
 
     public List<Badanie> getHistoriaBadan() {
@@ -101,7 +88,6 @@ public class Pacjent extends Osoba {
         this.recepty = new ArrayList<>();
         this.leki = new ArrayList<>();
         this.historiaBadan = new ArrayList<>();
-        this.listaSkierowan = new ArrayList<>();
     }
 
     public Pacjent() {
@@ -116,7 +102,6 @@ public class Pacjent extends Osoba {
                 ", pesel=" +getPesel()+
                 ", nrUbezpieczenia=" + nrUbezpieczenia +
                 ", lekarzRodzinny=" + lekarzRodzinny +
-                ", listaSkierowan=" + listaSkierowan +
                 ", historiaBadan=" + historiaBadan +
                 ", leki=" + leki +
                 ", recepty=" + recepty +
