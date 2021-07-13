@@ -1,0 +1,59 @@
+<html lang="pl" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head th:replace="fragments :: html_head (pageTitle='Edycja Konsultacji')"/>
+
+<body>
+
+<header th:replace="fragments :: header"></header>
+<div class="row justify-content-center">
+  <div class="col-5 mg-top50">
+<h1>EDYCJA KONSULTACJI</h1>
+<form action="#" th:action="@{/lekarz/konsultacje/edit}" th:object="${consultation}" method="POST" enctype="utf8">
+
+  <div class="form-group row">
+    <label class="col-sm-4 col-form-label" for="status">Status</label>
+    <div class="col-sm-6">
+      <select name="status" id="status" th:field="*{status}">
+        <option value="OCZEKUJACA">Oczekująca</option>
+        <option value="ZAKONCZONA">Zakończona</option>
+      </select>
+    </div>
+  </div>
+
+      <input th:field="*{id}" class="form-control" type="hidden"/>
+      <input th:field="*{patientpesel}" class="form-control" type="hidden"/>
+      <input th:field="*{lekarzid}" class="form-control" type="hidden"/>
+
+
+  <div class="form-group row">
+    <label class="col-sm-4 col-form-label">Typ badania</label>
+    <div class="col-sm-6">
+      <input th:field="*{typbadania}" class="form-control"/>
+      <p th:each="error: ${#fields.errors('typbadania')}"
+       th:text="${error}">Validation error</p>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-sm-4 col-form-label">Opis</label>
+    <div class="col-sm-6">
+      <input th:field="*{opis}" class="form-control"/>
+      <p th:each="error : ${#fields.errors('opis')}"
+       th:text="${error}">Validation error</p>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <div class="col-sm-10">
+      <button type="submit" class="btn btn-success">Edytuj</button>
+    </div>
+  </div>
+
+</form>
+  </div>
+</div>
+
+<footer th:replace="fragments :: footer"></footer>
+<div th:replace="fragments :: scripts"></div>
+</body>
+</html>

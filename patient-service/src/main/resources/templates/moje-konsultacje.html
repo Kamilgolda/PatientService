@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="pl" xmlns:th="http://www.thymeleaf.org"
     xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
-<head th:replace="fragments :: html_head (pageTitle='Umów wizytę')"/>
+<head th:replace="fragments :: html_head (pageTitle='Moje konsultacje')"/>
 <body>
 
 <header th:replace="fragments :: header"></header>
@@ -9,11 +9,16 @@
 <div class="row justify-content-center" style="height:100vh; margin-right:0px;">
     <div class="col-5 mg-top50">
         <table>
-            <tr data-th-each="x : ${doctors}">
-                <td data-th-text="${x.imie}">...</td>
-                <td data-th-text="${x.nazwisko}">...</td>
-                <td><a th:href="@{/patient/konsultacja/{id}(id=${x.pesel})}">Umów wizytę</a></td>
-                <br>
+            <tr>
+                <th>Imię lekarza</th>
+                <th>Nazwisko lekarza</th>
+                <th>Status</th>
+            </tr>
+            <tr data-th-each="x : ${consultations}">
+                <td data-th-text="${x.lekarzImie}">...</td>
+                <td data-th-text="${x.lekarzNazwisko}">...</td>
+                <td data-th-text="${x.status}">...</td>
+            <br>
             </tr>
         </table>
     </div>
