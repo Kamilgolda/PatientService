@@ -66,4 +66,44 @@ public class PSUserDetailsService implements UserDetailsService {
         }
         return lista;
     }
+
+    public List<PatientEntity> findAllDoctorsApi(){
+        List<PatientEntity> lista = new ArrayList<>();
+        for(User x: userRepository.findAllByRoles("ROLE_LEKARZ")){
+            Optional<PatientEntity> lekarz = patientRepository.findByPesel(x.getUserName());
+            if (lekarz.isPresent()) {
+                PatientEntity l = lekarz.get();
+                lista.add(l);
+            }
+        }
+        return lista;
+    }
+
+    public List<PatientEntity> findAllPatientApi(){
+        List<PatientEntity> lista = new ArrayList<>();
+        for(PatientEntity x:patientRepository.findAll()){
+            lista.add(x);
+        }
+        return lista;
+    }
+
+    public List<PatientEntity> findLekarzByNazwiskoApi(String nazwisko){
+        List<PatientEntity> doctors = findAllDoctorsApi();
+        List<PatientEntity> patientByName = new ArrayList<>();
+        for (PatientEntity patientDoc: doctors){
+            String naz = patientDoc.getNazwisko();
+            if(naz.equals(nazwisko)) {
+                patientByName.add(patientDoc);
+            }
+        }
+        return  patientByName;
+    }
+    public List<PatientEntity> findByNazwiskoApi(String nazwisko){
+        List<PatientEntity> patientByName = new ArrayList<>();
+        for (PatientEntity patient: patientRepository.findAllByNazwisko(nazwisko)){
+                patientByName.add(patient);
+        }
+        return  patientByName;
+    }
+
 }
