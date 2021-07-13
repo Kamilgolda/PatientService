@@ -70,5 +70,8 @@ public class HomeController {
         return "laboratorium";
     }
 
-
+    @GetMapping(path="/contact")
+    public String kontakt(final ModelMap model) throws Exception {
+        return "contact";
+    }
 }
