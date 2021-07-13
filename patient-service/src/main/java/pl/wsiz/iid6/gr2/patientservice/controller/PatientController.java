@@ -5,6 +5,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
+import pl.wsiz.iid6.gr2.patientservice.dto.Konsultacja;
 import pl.wsiz.iid6.gr2.patientservice.dto.Osoba;
 import pl.wsiz.iid6.gr2.patientservice.dto.Pacjent;
 import pl.wsiz.iid6.gr2.patientservice.entity.User;
@@ -76,6 +77,15 @@ public class PatientController {
         String pesel = principal.getName();
         patientService.registerNewConsultation(pesel, idP);
         return "konsultacja-finish";
+    }
+
+    @GetMapping(path="/konsultacje")
+    public String konsultacje(final ModelMap model, Principal principal) throws Exception {
+
+        String pesel = principal.getName();
+        List<Konsultacja> konsultacje = patientService.findKonsultacjaByPesel(pesel);
+        model.addAttribute("consultations", konsultacje);
+        return "moje-konsultacje";
     }
 
     @GetMapping(path ="/id")

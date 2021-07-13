@@ -80,4 +80,18 @@ public class PatientService {
 
         return newConsultation;
     }
+
+    public List<Konsultacja> findKonsultacjaByPesel(String pesel){
+        List<Konsultacja> lista = new ArrayList<>();
+        for(KonsultacjaEntity x: konsultacjaRepository.findAllByPatientpesel(pesel)){
+            Optional<PatientEntity> lekarz = patientRepository.findById(x.getLekarzid());
+            if (lekarz.isPresent()) {
+                PatientEntity l = lekarz.get();
+                lista.add(new Konsultacja(l.getImie(), l.getNazwisko(), x.getTypbadania(), x.getOpis(), x.getStatus()));
+            }
+        }
+        return lista;
+    }
+
+
 }
