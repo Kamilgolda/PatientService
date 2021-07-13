@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import pl.wsiz.iid6.gr2.patientservice.dto.Konsultacja;
 import pl.wsiz.iid6.gr2.patientservice.dto.Osoba;
 import pl.wsiz.iid6.gr2.patientservice.dto.Pacjent;
+import pl.wsiz.iid6.gr2.patientservice.entity.PatientEntity;
 import pl.wsiz.iid6.gr2.patientservice.entity.User;
 import pl.wsiz.iid6.gr2.patientservice.service.PSUserDetailsService;
 import pl.wsiz.iid6.gr2.patientservice.service.PatientService;
@@ -32,7 +33,7 @@ public class PatientController {
 
         String pesel = principal.getName();
         try{
-            Pacjent pacjent = patientService.findByPesel(pesel);
+            PatientEntity pacjent = patientService.findByPeselEntity(pesel);
             model.addAttribute("warning", "");
             model.addAttribute("plec", pacjent.getPlec());
             model.addAttribute("imie", pacjent.getImie());

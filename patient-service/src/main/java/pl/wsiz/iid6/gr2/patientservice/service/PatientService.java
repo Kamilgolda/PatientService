@@ -46,6 +46,14 @@ public class PatientService {
         return new Pacjent();
     }
 
+    public PatientEntity findByPeselEntity(String pesel){
+        Optional<PatientEntity> res = patientRepository.findByPesel(pesel);
+        if (res.isPresent()) {
+            PatientEntity patient = res.get();
+            return patient;
+        }
+        return new PatientEntity();
+    }
 
 
     public String findByNazwisko(String nazwisko){
