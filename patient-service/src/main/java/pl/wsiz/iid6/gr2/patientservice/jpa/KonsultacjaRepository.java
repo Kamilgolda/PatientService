@@ -8,4 +8,5 @@ import java.util.List;
 
 public interface KonsultacjaRepository extends CrudRepository<KonsultacjaEntity, Long> {
     List<KonsultacjaEntity> findAllByPatientpesel(String pesel);
+    List<KonsultacjaEntity> findAllByLekarzid(Long id);
 }

@@ -7,29 +7,27 @@
 <header th:replace="fragments :: header"></header>
 
 <div class="row justify-content-center" style="height:100vh; margin-right:0px;">
-    <div class="col-7 mg-top50">
-        <h1>Witaj w naszej przychodni</h1>
-        <div sec:authorize="isAnonymous()">
-            <h1>Lekarze online dla Ciebie.</h1>
-            <h2>Już w 15 minut</h2>
-            <h2>Umów się na e-konsultację lekarską</h2>
-            <h2>Bez wychodzenia z domu</h2>
-            <h3>Aby umówić się na konsultację wymagane jest zalogowanie się</h3>
-            <div class="text-center">
-                <a class="btn btn-success" th:href="@{/login}">Zaloguj się</a>
-                <a class="btn btn-primary" th:href="@{/register}">Zarejestruj się</a>
-            </div>
-        </div>
-
-        <div sec:authorize="isAuthenticated()">
-            <h1>Lekarze online dla Ciebie.</h1>
-            <h2>Już w 15 minut</h2>
-            <h2>Umów się na e-konsultację lekarską</h2>
-            <h2>Bez wychodzenia z domu</h2>
-            <div class="text-center">
-                <a class="btn btn-success" th:href="@{/patient/konsultacja}">Umów wizytę</a>
-            </div>
-        </div>
+    <div class="col-5 mg-top50">
+        <table style="border:2px solid black;">
+            <tr style="border: 1px solid black">
+                <th>Imię pacjenta</th>
+                <th>Nazwisko pacjenta</th>
+                <th>Pesel pacjenta</th>
+                <th>Typ badania</th>
+                <th>Opis</th>
+                <th>Status</th>
+            </tr>
+            <tr data-th-each="x : ${consultations}" style="border: 1px solid black">
+                <td data-th-text="${x.pacjentImie}">...</td>
+                <td data-th-text="${x.pacjentNazwisko}">...</td>
+                <td data-th-text="${x.pacjentPesel}">...</td>
+                <td data-th-text="${x.typbadania}">...</td>
+                <td data-th-text="${x.opis}">...</td>
+                <td data-th-text="${x.status}">...</td>
+                <td><a th:href="@{/lekarz/konsultacje/{id}(id=${x.id})}">Edytuj</a></td>
+                <br>
+            </tr>
+        </table>
     </div>
 </div>
 
