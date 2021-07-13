@@ -6,22 +6,31 @@
 
 <header th:replace="fragments :: header"></header>
 
-<h1>Witaj w naszej przychodni</h1>
-<div sec:authorize="isAnonymous()">
-    <h1>Lekarze online dla Ciebie.
-        Już w 15 minut
-        Umów się na e-konsultację lekarską.
-        Bez wychodzenia z domu</h1>
-    <h1>Aby umówić się na konsultację wymagane jest zalogowanie się</h1>
-    <a class="btn btn-success" th:href="@{/login}">Zaloguj się</a>
-</div>
+<div class="row justify-content-center" style="height:100vh; margin-right:0px;">
+    <div class="col-7 mg-top50">
+        <h1>Witaj w naszej przychodni</h1>
+        <div sec:authorize="isAnonymous()">
+            <h1>Lekarze online dla Ciebie.</h1>
+            <h2>Już w 15 minut</h2>
+            <h2>Umów się na e-konsultację lekarską</h2>
+            <h2>Bez wychodzenia z domu</h2>
+            <h3>Aby umówić się na konsultację wymagane jest zalogowanie się</h3>
+            <div class="text-center">
+                <a class="btn btn-success" th:href="@{/login}">Zaloguj się</a>
+                <a class="btn btn-primary" th:href="@{/register}">Zarejestruj się</a>
+            </div>
+        </div>
 
-<div sec:authorize="isAuthenticated()">
-    <h1>Lekarze online dla Ciebie.
-        Już w 15 minut
-        Umów się na e-konsultację lekarską.
-        Bez wychodzenia z domu</h1>
-    <a class="btn btn-success" th:href="@{/patient/konsultacja}">Umów wizytę</a>
+        <div sec:authorize="isAuthenticated()">
+            <h1>Lekarze online dla Ciebie.</h1>
+            <h2>Już w 15 minut</h2>
+            <h2>Umów się na e-konsultację lekarską</h2>
+            <h2>Bez wychodzenia z domu</h2>
+            <div class="text-center">
+                <a class="btn btn-success" th:href="@{/patient/konsultacja}">Umów wizytę</a>
+            </div>
+        </div>
+    </div>
 </div>
 
 <footer th:replace="fragments :: footer"></footer>

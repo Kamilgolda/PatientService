@@ -5,6 +5,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import pl.wsiz.iid6.gr2.patientservice.dto.Osoba;
 import pl.wsiz.iid6.gr2.patientservice.dto.PSUserDetails;
 import pl.wsiz.iid6.gr2.patientservice.dto.UserDto;
 import pl.wsiz.iid6.gr2.patientservice.entity.PatientEntity;
@@ -13,6 +14,8 @@ import pl.wsiz.iid6.gr2.patientservice.jpa.PatientRepository;
 import pl.wsiz.iid6.gr2.patientservice.jpa.UserRepository;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -51,4 +54,16 @@ public class PSUserDetailsService implements UserDetailsService {
 //    private boolean emailExist(String email) {
 //        return userRepository.findByEmail(email) != null;
 //    }
+
+    public List<Osoba> findAllDoctors(){
+        List<Osoba> lista = new ArrayList<>();
+        for(User x: userRepository.findAllByRoles("ROLE_LEKARZ")){
+            Optional<PatientEntity> lekarz = patientRepository.findByPesel(x.getUserName());
+            if (lekarz.isPresent()) {
+                PatientEntity l = lekarz.get();
+                lista.add(new Osoba(l.getImie(), l.getNazwisko(), l.getMail(), l.getNrTelefonu()));
+            }
+        }
+        return lista;
+    }
 }

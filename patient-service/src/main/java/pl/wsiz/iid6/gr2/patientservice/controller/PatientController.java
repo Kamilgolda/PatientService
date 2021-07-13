@@ -58,24 +58,6 @@ public class PatientController {
         return "profile";
     }
 
-    @GetMapping(path = "/hej")
-    @ResponseBody
-    public String witaj(@RequestParam String name){
-        return "Witaj w naszej przychodni "+name;
-    }
-
-    @GetMapping(path = "/pa")
-    @ResponseBody
-    public String pa(){
-        return "Do zobaczenia <p>następnym razem</>";
-    }
-
-    @GetMapping(path = "/wiek")
-    @ResponseBody
-    public String wiek(@RequestParam(required = true) int ru, @RequestParam(required = false) int rs) {
-        return Integer.toString(rs-ru);
-    }
-
     @GetMapping(path ="/id")
     @ResponseBody
     public String patientId(@RequestParam Long idP){

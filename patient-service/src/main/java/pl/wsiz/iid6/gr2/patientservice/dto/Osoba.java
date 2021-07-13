@@ -172,6 +172,13 @@ public class Osoba{
         if (!checkPesel()) throw new InputMismatchException("Wprowadzone dane się nie zgadzają");
     }
 
+    public Osoba(String imie, String nazwisko, String mail, String nrTelefonu) {
+        this.imie = imie;
+        this.nazwisko = nazwisko;
+        this.mail = mail;
+        this.nrTelefonu = nrTelefonu;
+    }
+
     public Osoba() {
     }
 }
